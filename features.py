@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import urllib, bs4, re
 import googlesearch
 import whois
-import datetime
+from datetime import datetime, timezone
 import time
 import phishtank
 import socket
@@ -86,15 +86,29 @@ def have_subdomain(url):
 
 #Domain_registration_length
 def domain_registration_length(domain):
+
+    # expiry_date = domain.expiration_date
+    # today = time.strftime("%Y-%m-%d")
+    # today_date = datetime.datetime.strptime(today,"%Y-%m-%d")
+    # registration_length = abs((expiry_date - today_date).days)
+
+    # if registration_length / 365 <= 1:
+    #     return -1
+    # else:
+    #     return 1
     expiry_date = domain.expiration_date
-    today = time.strftime("%Y-%m-%d")
-    today_date = datetime.datetime.strptime(today,"%Y-%m-%d")
-    registration_length = abs((expiry_date - today_date).days)
+    exp = datetime.strftime(expiry_date,"%Y-%m-%d")
+    expires = datetime.strptime(exp,"%Y-%m-%d")
+    today = datetime.today()
+    tp = datetime.strftime(today,"%Y-%m-%d")
+    today_date = datetime.strptime(tp,"%Y-%m-%d")
+    registration_length = abs((expires - today_date).days)
 
     if registration_length / 365 <= 1:
-        return -1
+    	return -1
     else:
-        return 1
+    	return 1
+
 
 #website has favicon
 
@@ -274,13 +288,25 @@ def iframe(soup):
 
 #Age of Domain
 def age_of_domain(domain):
+    # creation_date = domain.creation_date
+    # expiration_date = domain.expiration_date
+    # ageofdomain = abs((expiration_date - creation_date).days)
+    # if ageofdomain / 30 < 6:
+    #     return -1
+    # else:
+    #     return 1
     creation_date = domain.creation_date
     expiration_date = domain.expiration_date
-    ageofdomain = abs((expiration_date - creation_date).days)
-    if ageofdomain / 30 < 6:
-        return -1
+    create = datetime.strftime(creation_date,"%Y-%m-%d")
+    create_date = datetime.strptime(create,"%Y-%m-%d")
+    exp = datetime.strftime(expiration_date,"%Y-%m-%d")
+    exp_date = datetime.strptime(exp,"%Y-%m-%d")
+    domain_age = abs((exp_date - create_date).days)
+
+    if domain_age / 30 < 6:
+    	return -1
     else:
-        return 1
+    	return 1
 
 #Traffic on website using Alexa
 def web_traffic(url):
@@ -362,7 +388,7 @@ def main(url):
     status.append(favicon(url,soup, hostname))
 
     port_numbers = [21,22,23, 80,443]
-    status.append(isOpen(url,port_numbers))
+    status.append(isOpen(hostname,port_numbers))
     status.append(https_token(url))
     status.append(request_url(url, soup, hostname))
     status.append(url_of_anchor(url, soup, hostname))
@@ -390,10 +416,10 @@ def main(url):
     status.append(statistical_report(url,hostname))
 
     print ('\n1. Having IP address\n2. URL Length\n3. URL Shortening service\n4. Having @ symbol\n5. Having double slash\n' \
-          '6. Having dash symbol(Prefix Suffix)\n7. Having multiple subdomains\n8888. SSL Final State\n8. Domain Registration Length\n9. Favicon\n' \
-          '10. HTTP or HTTPS token in domain name\n11. Request URL\n12. URL of Anchor\n13. Links in tags\n' \
-          '14. SFH\n15. Submitting to email\n16. Abnormal URL\n(removed temporarily)11117. Redirect\n17. IFrame\n18. Age of Domain\n19. DNS Record\n20. Web Traffic\n' \
-          '21. Google Index\n22. Statistical Reports\n')
+          '6. Having dash symbol(Prefix Suffix)\n7. Having multiple subdomains\n8. Domain Registration Length\n9. Favicon\n' \
+          '10. Ports \n 11. HTTP or HTTPS token in domain name\n12. Request URL\n13. URL of Anchor\n14. Links in tags\n' \
+          '15. SFH\n16. Submitting to email\n17. Abnormal URL\n18. IFrame\n19. Age of Domain\n20. DNS Record\n21. Web Traffic\n' \
+          '22. Google Index\n23. Statistical Reports\n')
     print (status)
     return status
 
