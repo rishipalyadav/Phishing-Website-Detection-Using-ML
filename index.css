@@ -1,0 +1,15 @@
+.main_body{
+  margin: auto;
+  margin-top: 5%;
+  text-align: center;
+}
+#main_text{
+  font-size: 40px;
+}
+#response{
+  font-size: 50px;
+}
+
+button{
+  font-size: 20px;
+}

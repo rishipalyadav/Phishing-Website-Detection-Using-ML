@@ -1,0 +1,45 @@
+@relation phishing
+
+0@attribute having_IP_Address  { -1,1 }
+1@attribute URL_Length   { 1,0,-1 }
+2@attribute Shortining_Service { 1,-1 }
+3@attribute having_At_Symbol   { 1,-1 }
+4@attribute double_slash_redirecting { -1,1 }
+5@attribute Prefix_Suffix  { -1,1 }
+6@attribute having_Sub_Domain  { -1,0,1 }
+
+7@attribute SSLfinal_State  { -1,1,0 }
+
+8@attribute Domain_registeration_length { -1,1 }
+9@attribute Favicon { 1,-1 }
+10@attribute port { 1,-1 }
+11@attribute HTTPS_token { -1,1 }
+12@attribute Request_URL  { 1,-1 }
+13@attribute URL_of_Anchor { -1,0,1 }
+14@attribute Links_in_tags { 1,-1,0 }
+15@attribute SFH  { -1,1,0 }
+16@attribute Submitting_to_email { -1,1 }
+17@attribute Abnormal_URL { -1,1 }
+
+18@attribute Redirect  { 0,1 }
+19@attribute on_mouseover  { 1,-1 }
+20@attribute RightClick  { 1,-1 }
+21@attribute popUpWidnow  { 1,-1 }
+
+22@attribute Iframe { 1,-1 }
+23@attribute age_of_domain  { -1,1 }
+24@attribute DNSRecord   { -1,1 }
+25@attribute web_traffic  { -1,0,1 }
+
+26@attribute Page_Rank { -1,1 }
+
+27@attribute Google_Index { 1,-1 }
+
+28@attribute Links_pointing_to_page { 1,0,-1 }
+
+29@attribute Statistical_report { -1,1 }
+
+
+@attribute Result  { -1,1 }
+
+Features used from the dataset:  [0,1,2,3,4,5,6,8,9,11,12,13,14,15,16,17,22,23,24,25,27,29]
