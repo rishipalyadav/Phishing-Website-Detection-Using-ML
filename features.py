@@ -135,11 +135,8 @@ def isOpen(url,port_numbers):
             status_port.append(0)
         except:
             status_port.append(1)
-    if(status_port[3] == 0 & status_port[4] == 0):
-        if(status_port[0] == 1 & status_port[1] == 1 & status_port[2] == 1):
-            return -1
-        else:
-            return -1
+    if(status_port[3] == 0 & status_port[4] == 0 & status_port[0] == 1 & status_port[1] == 1 & status_port[2] == 1):
+    	return -1
     else:
         return 1
 
@@ -417,7 +414,7 @@ def main(url):
 
     print ('\n1. Having IP address\n2. URL Length\n3. URL Shortening service\n4. Having @ symbol\n5. Having double slash\n' \
           '6. Having dash symbol(Prefix Suffix)\n7. Having multiple subdomains\n8. Domain Registration Length\n9. Favicon\n' \
-          '10. Ports \n 11. HTTP or HTTPS token in domain name\n12. Request URL\n13. URL of Anchor\n14. Links in tags\n' \
+          '10. Ports \n11. HTTP or HTTPS token in domain name\n12. Request URL\n13. URL of Anchor\n14. Links in tags\n' \
           '15. SFH\n16. Submitting to email\n17. Abnormal URL\n18. IFrame\n19. Age of Domain\n20. DNS Record\n21. Web Traffic\n' \
           '22. Google Index\n23. Statistical Reports\n')
     print (status)
